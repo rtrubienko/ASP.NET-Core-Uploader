@@ -1,0 +1,32 @@
+﻿@using Newtonsoft.Json.Linq
+@model Newtonsoft.Json.Linq.JToken
+
+@if (Model is JObject)
+{
+    <ul style="list-style: none;">
+        @foreach (var property in ((JObject)Model).Properties())
+        {
+            <li>
+                <strong>@property.Name</strong>:
+                @await Html.PartialAsync("_JsonTreeView", property.Value)
+            </li>
+        }
+    </ul>
+}
+else if (Model is JArray)
+{
+    <span>
+        [
+            @foreach(var item in (JArray)Model)
+            {
+
+                @await Html.PartialAsync("_JsonTreeView", item)
+
+            }
+        ]
+    </span>
+}
+else
+{
+    <span>@Model</span>
+}

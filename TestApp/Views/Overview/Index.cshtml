@@ -1,0 +1,20 @@
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+@{
+    ViewData["Title"] = "View File";
+}
+
+<div class="row">
+
+    <h1>JSON Tree</h1>
+
+    <div class="row">
+        @if (Model != null)
+        {
+            var jsonString = Model.jsonData;
+            var json = JsonConvert.DeserializeObject<JToken>(jsonString);
+
+            @await Html.PartialAsync("_JsonTreeView", (JObject)json);
+        }
+    </div>
+</div>

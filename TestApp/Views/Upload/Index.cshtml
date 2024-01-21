@@ -1,0 +1,22 @@
+﻿@model Upload
+@{
+    ViewData["Title"] = "Upload Your File";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">@ViewData["Title"]</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Upload" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+                <div class="file-drop-container" id="fileDropContainer">
+                    <p class="mb-3">Drag and drop files or click to upload</p>
+                    <input asp-for="File" type="file" class="file-input" id="fileInput">
+                    <label asp-for="File" for="fileInput" class="btn btn-primary">Select file</label>
+                    <span asp-validation-for="File" class="d-block text-danger" id="textDanger"></span>
+                    <div id="fileList"></div>
+                </div>
+                <button type="submit" class="d-block btn btn-primary mt-2 ms-auto" id="uploadButton" disabled>Upload File</button>
+            </form>
+        </div>
+    </div>
+</div>

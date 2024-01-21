@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page Uploader APP";
+}
+
+<div class="text-center mt-4">
+    <h1 class="display-4">Welcome to Loader APP!</h1>
+    <p><a asp-area="" asp-controller="upload" asp-action="Index">Upload Your File </a>(<small>.json, .txt</small>)</p>
+</div>
+<div class="row">
+@{
+    if (Model != null)
+    {
+        <div class="list-group col-sm-3">
+            @{
+                foreach (var item in Model)
+                {
+                    <a asp-controller="overview" asp-action="Index" asp-route-id="@item.id" class="list-group-item list-group-item-action">@item.jsonName</a>
+                }
+            }
+        </div>
+    }
+}
+</div>
